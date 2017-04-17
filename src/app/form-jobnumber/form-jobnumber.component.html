@@ -1,0 +1,5 @@
+<input class="input" type="text" value="{{fs.jobnumber}}" placeholder="Job Number" (keyup)="fs.setJobnumber($event.target.value)">
+
+<div *ngIf="fs.jobnumber !== undefined && fs.jobnumber !== ''">
+  <button class="form-button" routerLink="/agency">Next</button>
+</div>

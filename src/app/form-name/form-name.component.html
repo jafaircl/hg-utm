@@ -1,0 +1,5 @@
+<input class="text-input" type="text" value="{{fs.name}}" placeholder="Name" (keyup)="fs.setName($event.target.value)">
+
+<div *ngIf="fs.name !== undefined && fs.name !== ''">
+  <button class="form-button" routerLink="/channel">Next</button>
+</div> 

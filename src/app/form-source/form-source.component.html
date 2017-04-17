@@ -1,0 +1,33 @@
+<div *ngIf="fs.channel == 'display'">
+  <select class="input" [ngModel]="source" (change)="fs.setSource($event.target.value)">
+    <option *ngFor="let option of displayOptions"
+            [value]="option.value">{{option.name}}</option>
+  </select>
+</div>
+
+<div *ngIf="fs.channel == 'search'">
+  <select class="input" [ngModel]="source" (change)="fs.setSource($event.target.value)">
+      <option *ngFor="let option of searchOptions"
+              [value]="option.value">{{option.name}}</option>
+  </select>
+</div>
+
+<div *ngIf="fs.channel == 'social'">
+  <select class="input" [ngModel]="source" (change)="fs.setSource($event.target.value)">
+      <option *ngFor="let option of socialOptions"
+              [value]="option.value">{{option.name}}</option>
+  </select>
+</div>
+
+<div *ngIf="fs.channel == 'video'">
+  <select class="input" [ngModel]="source" (change)="fs.setSource($event.target.value)">
+      <option *ngFor="let option of videoOptions"
+              [value]="option.value">{{option.name}}</option>
+  </select>
+</div>
+
+
+
+<div *ngIf="fs.source !== 'select'">
+  <button class="form-button" routerLink="/medium">Next</button>
+</div>

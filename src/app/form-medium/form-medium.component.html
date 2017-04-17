@@ -1,0 +1,5 @@
+<input class="input" type="text" value="{{fs.medium}}" placeholder="Marketing Medium (e.g. cpc or cpm)" (keyup)="fs.setMedium($event.target.value)">
+
+<div *ngIf="fs.medium !== undefined && fs.medium !== ''">
+  <button class="form-button" routerLink="/job-number">Next</button>
+</div>

@@ -1,0 +1,9 @@
+<p>Agency:</p>
+<input class="input" type="text" value="{{fs.agency}}" placeholder="Agency Name" (keyup)="fs.setAgency($event.target.value)">
+
+<div *ngIf="fs.agency !== undefined && fs.agency !== ''; else noAgency">
+  <button class="form-button" routerLink="/campaign">Next</button>
+</div>
+<ng-template #noAgency>
+  <button class="form-button" routerLink="/campaign">Skip</button>
+</ng-template>

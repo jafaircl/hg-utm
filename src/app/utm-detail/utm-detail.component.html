@@ -1,0 +1,97 @@
+<input class="input name-input" type="text" value="{{ (item | async)?.name }}" (blur)="updateName(nameInput.value)" #nameInput placeholder="Name">
+
+<a class="open-button form-button" href="{{ (item | async)?.fullUrl }}" target="_blank">Open</a>
+<div class="author-info">
+  <img class="avatar" src="{{ (item | async)?.userPhoto }}">
+  <span>
+    <p class="author-byline">Created By: {{ (item | async)?.userDisplayName }}</p>
+    <p class="">Created On: {{ (item | async)?.date }}</p>
+  </span>
+</div>
+
+<input class="input" type="text" value="{{ (item | async)?.url }}" (blur)="update(urlInput.value, utmInput.value)" #urlInput placeholder="URL">
+<button class="form-button" (click)="testUrl(urlInput.value)">Test URL</button>
+
+<div *ngIf="mobileData | async; let mData">
+  <h2>Mobile Results:</h2>
+  <p>Speed Score: {{ pss.getSpeedScore(mData) }}</p>
+  <p>Usability Score: {{ pss.getUsabilityScore(mData) }}</p>
+  <br>
+  <details>
+    <summary>More Info</summary>
+    <img [src]="pss.formatScreenshot(mData)">
+    <h2>Passed Rules:</h2>
+    <ul>
+      <li *ngFor="let rule of pss.getPassedRules(mData)">
+        <a href="{{ rule.summary.args[0].value }}">{{ rule.localizedRuleName }}</a>
+      </li>
+    </ul>
+    <br><br>
+    <h2>Failed Rules:</h2>
+    <ul>
+      <li *ngFor="let rule of pss.getFailedRules(mData)">
+        <p>{{ rule.localizedRuleName }}</p>
+      </li>
+    </ul>
+    <br><br>
+    <a href="https://developers.google.com/speed/pagespeed/insights/?url={{ (item | async)?.url }}" target="_blank">More details</a>
+  </details>
+  <br>
+</div>
+<div *ngIf="desktopData | async; let dData">
+  <h2>Desktop Results:</h2>
+  <p>Speed Score: {{ pss.getSpeedScore(dData) }}</p>
+  <br>
+  <details>
+    <summary>More Info</summary>
+    <img [src]="pss.formatScreenshot(dData)">
+    <h2>Passed Rules:</h2>
+    <ul>
+      <li *ngFor="let rule of pss.getPassedRules(dData)">
+        <a href="{{ rule.summary.args[0].value }}">{{ rule.localizedRuleName }}</a>
+      </li>
+    </ul>
+    <br><br>
+    <h2>Failed Rules:</h2>
+    <ul>
+      <li *ngFor="let rule of pss.getFailedRules(dData)">
+        <p>{{ rule.localizedRuleName }}</p>
+      </li>
+    </ul>
+    <br><br>
+    <a href="https://developers.google.com/speed/pagespeed/insights/?url={{ (item | async)?.url }}" target="_blank">More details</a>
+  </details>
+</div>
+<br><br>
+<input class="input" type="text" value="{{ (item | async)?.utm }}" (blur)="updateUtm(utmInput.value)" #utmInput placeholder="utm">
+
+<button class="form-button" [ngxClipboard]="utmInput">Copy</button>
+<button class="form-button" (click)="deleteItem()">Delete</button>
+
+<!--
+<textarea class="input" name="textarea" rows="10" #notes>{{ (item | async)?.notes }}</textarea>
+<button class="form-button" (click)="saveNotes(notes.value)">Save</button>-->
+
+<ul class="input message-list">
+  <li *ngFor="let message of messages | async">
+    <div class="message-header">
+      <img class="avatar" src="{{ message.userPhoto }}">
+      <span class="message-author">{{ message.userDisplayName }} -</span>
+      <span class="message-date">{{ message.formattedDate }}</span>
+      <div *ngIf="user.uid === message.userId">
+        <button class="delete-button" (click)="deleteMessage(message.$key)">Delete</button>
+      </div>
+    </div>
+    <div class="message-content">
+      <p>{{ message.message }}</p>
+      
+    </div>
+    
+  </li>
+</ul>
+
+<input class="input" type="text" #message placeholder="message">
+
+<button class="form-button" (click)="sendMessage(message)">Send</button>
+
+<!--<pre>{{ item | async | json }}</pre>-->

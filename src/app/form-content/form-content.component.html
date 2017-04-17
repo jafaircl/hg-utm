@@ -1,0 +1,8 @@
+<input class="input" type="text" value="{{fs.content}}" placeholder="Campaign Content (e.g. imageAd, textAd)" (keyup)="fs.setContent($event.target.value)">
+
+<div *ngIf="fs.content !== undefined && fs.content !== ''; else noTerm">
+  <button class="form-button" routerLink="/url">Next</button>
+</div>
+<ng-template #noTerm>
+  <button class="form-button" routerLink="/url">Skip</button>
+</ng-template>

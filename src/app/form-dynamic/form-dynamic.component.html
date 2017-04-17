@@ -1,0 +1,28 @@
+<p>Dynamic Parameters</p>
+
+<div *ngIf="fs.channel == 'display'">
+  <div *ngFor="let option of displayOptions">
+    <label>
+      <input type="checkbox"
+             name="options"
+             value="{{option.value}}"
+             (change)="fs.setDynamic(selectedOptions(displayOptions))"
+             [(ngModel)]="option.checked"/>
+            {{option.name}}
+    </label>
+  </div>
+</div>
+
+<div *ngIf="fs.channel == 'search'">
+  <div *ngFor="let option of searchOptions">
+    <label>
+      <input type="checkbox"
+             name="options"
+             value="{{option.value}}"
+             (change)="fs.setDynamic(selectedOptions(searchOptions))"
+             [(ngModel)]="option.checked"/>
+            {{option.name}}
+    </label>
+  </div>
+</div>
+<button class="form-button" routerLink="/term">Next</button>

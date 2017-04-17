@@ -1,0 +1,12 @@
+<select class="input" [ngModel]="channel" (change)="fs.setChannel($event.target.value)">
+  <option *ngFor="let option of options" [value]="option.value">{{option.name}}</option>
+</select>
+
+<div *ngIf="fs.channel !== 'select'">
+  <div *ngIf="fs.channel == 'display' || fs.channel == 'search' || fs.channel == 'social' || fs.channel == 'video';else noSource">
+    <button class="form-button" routerLink="/source">Next</button>
+  </div>
+  <ng-template #noSource>
+    <button class="form-button" routerLink="/agency" (click)="setSourceMedium()">Next</button>
+  </ng-template>
+</div>

@@ -1,0 +1,70 @@
+@import '../assets/normalize';
+
+$header-height: 80px;
+
+header {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: $header-height;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  button,
+  [role="button"] {
+    position: relative;
+    width: 42px; height: 42px;
+    margin-left: 16px; margin-right: 16px;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+    
+    img,
+    i {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    
+    img {
+      width: 120%; height: 120%;
+    }
+    
+    i {
+      
+    }
+  }
+  
+  .fab {
+    width: 48px; height: 48px;
+    background: #68BDCF;
+    color: #FFF;
+    box-shadow:  0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  }
+  
+  svg {
+    width: 180px;
+  }
+}
+
+main {
+  width: calc(100% - 32px);
+  max-width: 620px;
+  padding: 16px;
+  margin: $header-height auto;
+  
+  
+}
+
+
+
+
+
+
+
+
+
+.fill-remaining-space {
+  flex: 1 1 auto;
+}

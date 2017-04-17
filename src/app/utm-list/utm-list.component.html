@@ -1,0 +1,28 @@
+<input class="search" type="text" placeholder="Search..." (keyup)="filter($event.target.value)" #searchBox>
+
+<div *ngIf="searchBox.value !== ''; else noFilter">
+  <ul>
+    <li *ngFor="let item of filtered">
+      <a  class="list-item" routerLink="/utm/{{item.$key}}">
+        <img class="list-avatar" src="{{ item.userPhoto }}">
+        <span class="list-text">
+          <p class="list-link">{{item.name}}</p>
+          <p class="list-date">{{ item.date }}</p>
+        </span>
+      </a>
+    </li>
+  </ul>
+</div>
+<ng-template #noFilter>
+ <ul>
+    <li *ngFor="let item of items | async">
+      <a class="list-item" routerLink="/utm/{{item.$key}}">
+        <img class="list-avatar" src="{{ item.userPhoto }}">
+        <span class="list-text">
+          <p class="list-link">{{item.name}}</p>
+          <p class="list-date">{{ item.date }}</p>
+        </span>
+      </a>
+    </li>
+  </ul>
+</ng-template>

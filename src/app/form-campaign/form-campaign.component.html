@@ -1,0 +1,8 @@
+<input class="input" type="text" value="{{fs.campaign}}" placeholder="Campaign Name (e.g. hra, ortho)" (keyup)="fs.setCampaign($event.target.value)">
+
+<div *ngIf="fs.campaign !== undefined && fs.campaign !== ''; else noCampaign">
+  <button class="form-button" routerLink="/serviceline">Next</button>
+</div>
+<ng-template #noCampaign>
+  <button class="form-button" routerLink="/serviceline">Skip</button>
+</ng-template>

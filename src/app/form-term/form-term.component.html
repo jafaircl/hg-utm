@@ -1,0 +1,8 @@
+<input class="input" type="text" value="{{fs.term}}" placeholder="Campaign Term (e.g. knee+pain)" (keyup)="fs.setTerm($event.target.value)">
+
+<div *ngIf="fs.term !== undefined && fs.term !== ''; else noTerm">
+  <button class="form-button" routerLink="/content">Next</button>
+</div>
+<ng-template #noTerm>
+  <button class="form-button" routerLink="/content">Skip</button>
+</ng-template>

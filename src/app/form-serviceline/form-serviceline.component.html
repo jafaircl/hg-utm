@@ -1,0 +1,22 @@
+<input class="input" type="text" value="{{fs.serviceline}}" placeholder="Serviceline" (keyup)="fs.setServiceline($event.target.value)">
+
+<div *ngIf="fs.channel == 'display' || fs.channel == 'search';else noDynamic">
+ 
+  <div *ngIf="fs.serviceline !== undefined && fs.serviceline !== ''; else noServiceline">
+    <button class="form-button" routerLink="/dynamic">Next</button>
+  </div>
+  <ng-template #noServiceline>
+    <button class="form-button" routerLink="/dynamic">Skip</button>
+  </ng-template>
+  
+</div>
+<ng-template #noDynamic>
+ 
+  <div *ngIf="fs.serviceline !== undefined && fs.serviceline !== ''; else noServiceline">
+    <button class="form-button" routerLink="/term">Next</button>
+  </div>
+  <ng-template #noServiceline>
+    <button class="form-button" routerLink="/term">Skip</button>
+  </ng-template>
+  
+</ng-template>
